@@ -5,6 +5,10 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
+    respond_to do |format|
+      format.json
+      format.csv { render text: @users.to_csv }
+    end
   end
 
   # GET /users/1
@@ -36,6 +40,9 @@ class UsersController < ApplicationController
       end
     end
   end
+
+
+
 
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
